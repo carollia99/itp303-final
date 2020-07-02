@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <title>Buy Coffee</title>
+    <title>You!</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -13,7 +13,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-    
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -33,6 +32,36 @@
             </ul>
         </div>
     </nav>  
+    <h2>
+       {User} Information
+    </h2>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-5 col-lg-3">
+                <img src="./photos/temp_coffee.jpeg" class="img-fluid">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <h3>User Name</h3>
+        </div>
+        <form>
+            <fieldset disabled>
+              <div class="form-group">
+                <label for="userEmail">Email</label>
+                <input type="email" id="userEmail" class="form-control" placeholder="{EMAIL}">
+              </div>
+              <div class="form-group">
+                <label for="userName">Name</label>
+                <input type="text" id="userName" class="form-control" placeholder="{FULL NAME}">
+              </div>
+              <div class="form-group">
+                <label for="userAddress">Shipping Address</label>
+                <input type="text" id="userAddress" class="form-control" placeholder="{ADDRESS}">
+              </div>
+            </fieldset>
+            <span><button type="submit" class="btn btn-secondary">Edit Info</button></span>
+          </form>
+    </div>
   
 
     <!-- JS, Popper.js, and jQuery -->
