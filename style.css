@@ -5,3 +5,8 @@ html, body, .container {
 .login {
     margin-top: 5em;
 }
+
+.product {
+    margin-left: 2em;
+    margin-right: 2em;
+}
