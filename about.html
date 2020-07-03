@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <title>You!</title>
+    <title>Cart</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -13,17 +13,18 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
+    
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="home.html">Home </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="about.html">About </a>
                  </li>
             </ul>
             <ul class="navbar-nav mr-0">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="profile.html">Profile </a>
                 </li>
                 <li class="nav-item">
@@ -32,34 +33,45 @@
             </ul>
         </div>
     </nav>  
-    <h2>
-       {User} Information
-    </h2>
+    <div class="jumbotron center-text">
+        <h1>About us</h1>
+        <h3>Get to know Matcha Life!</h3>
+    </div>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-10 col-md-5 col-lg-3">
-                <img src="./photos/temp_coffee.jpeg" class="img-fluid">
-                <h3>User Name</h3>
+        <div class="row">
+            <h3>Why we exist</h3>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 center-text my-4">
+                <div class="member-pic mb-2">
+                    <img src="carol.jpg" alt="Carol">
+                </div>
+                <h3 class="member-name">Carol Liang</h3>
+                <h4 class="member-role">Founder</h4>
+                <div class="px-5 mb-2 px-md-0">Carol is the founder of Matcha Life and a student in ITP 303. She is going through a Matcha obsession during quarantine, which inspired the making of this site.</div>
+                <a class="btn btn-light secondary-green" href="https://www.linkedin.com/in/carolliangce/" target="_blank">More Info</a>
+            </div>
+            <div class="col-12 col-md-4 center-text my-4">
+                <div class="member-pic mb-2">
+                    <img src="emily.jpg" alt="Emily">
+                </div>
+                <h3 class="member-name">Emily Ratajkowski</h3>
+                <h4 class="member-role">Director of Marketing</h4>
+                <div class="px-5 mb-2 px-md-0">Emily R is an Instagram influencer/model and business owner. She has strong expertise in all things digital branding, digital marketing, and swimsuits.</div>
+                <a class="btn btn-light secondary-green" href="https://www.instagram.com/emrata/?hl=en" target="_blank">More Info</a>
+            </div>
+            <div class="col-12 col-md-4 center-text my-4">
+                <div class="member-pic mb-2">
+                    <img src="jeff.jpeg" alt="Jeff">
+                </div>
+                <h3 class="member-name">Jeff Weiner</h3>
+                <h4 class="member-role">Director of BizDev</h4>
+                <div class="px-5 mb-2 px-md-0">Jeff Weiner leads Business Development here at Matcha Life. He is also the CEO of LinkedIn, where Carol hopes to get a return offer from, so plz give me job Jeff :)</div>
+                <a class="btn btn-light secondary-green" href="https://www.linkedin.com/in/jeffweiner08/" target="_blank">More Info</a>
             </div>
         </div>
-        <form>
-            <fieldset disabled>
-              <div class="form-group">
-                <label for="userEmail">Email</label>
-                <input type="email" id="userEmail" class="form-control" placeholder="{EMAIL}">
-              </div>
-              <div class="form-group">
-                <label for="userName">Name</label>
-                <input type="text" id="userName" class="form-control" placeholder="{FULL NAME}">
-              </div>
-              <div class="form-group">
-                <label for="userAddress">Shipping Address</label>
-                <input type="text" id="userAddress" class="form-control" placeholder="{ADDRESS}">
-              </div>
-            </fieldset>
-            <span><button type="submit" class="btn btn-secondary">Edit Info</button></span>
-          </form>
     </div>
+
   
 
     <!-- JS, Popper.js, and jQuery -->
