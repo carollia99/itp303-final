@@ -1,7 +1,6 @@
 <?php
 require "./config.php";
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ( $mysqli->connect_errno ) {
 	echo $mysqli->connect_error;
 	exit();
@@ -53,7 +52,7 @@ $mysqli->close();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <title>Some Coffee</title>
+    <title>Coffee!</title>
   </head>
   <body>
       <div class="container">
@@ -87,7 +86,7 @@ $mysqli->close();
                     <div class="row">
                       <div class="col-10 col-md-7 col-lg-5">
                         <button type="submit" class="btn btn-secondary">Log in</button>
-                        <button type="submit" class="btn btn-light">I don't have an account - register</button>
+                        <a href="register.php" role="button" class="btn btn-light">Register</a>
                       </div>
                     </div>
                 </form>
