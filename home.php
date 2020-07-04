@@ -9,7 +9,6 @@ if ( $mysqli->connect_errno ) {
 $mysqli->set_charset('utf8');
 
 echo "<hr>" . $_SESSION['email'] . "<hr>";
-echo "<hr>" . $_SESSION['id'] . "<hr>";
 
 $sql_products = "SELECT * FROM products";
 $results_products = $mysqli->query($sql_products);
@@ -76,7 +75,7 @@ $mysqli->close();
               <div class="text-success"><?php echo $success; ?></div>
         <?php endif; ?>
         <div class="row">
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -93,7 +92,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -110,7 +109,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -127,7 +126,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -144,7 +143,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -161,7 +160,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -178,7 +177,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -195,7 +194,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -212,7 +211,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -229,7 +228,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
@@ -246,7 +245,7 @@ $mysqli->close();
                     </div>
                 </form>
             </div>
-            <div class="col-10 col-md-5 col-lg-3 my-2 product">
+            <div class="col-10 col-md-4 col-lg-3 my-2 product">
                 <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
