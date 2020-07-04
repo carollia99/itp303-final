@@ -1,3 +1,27 @@
+<?php
+require "./config.php";
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ( $mysqli->connect_errno ) {
+	echo $mysqli->connect_error;
+	exit();
+} 
+$mysqli->set_charset('utf8');
+
+$sql = "SELECT * FROM users WHERE email = '" . $_SESSION['email'] . "';";
+echo "<hr>" . $sql . "<hr>";
+$results = $mysqli->query($sql);
+$user_info = $results->fetch_assoc();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['email']) && isset($_POST['full_name']) && isset($_POST['address']) 
+  && !empty($_POST['email']) && !empty($_POST['full_name']) && !empty($_POST['address'])) {
+    echo "we good";
+  } else {
+      echo "plz fill in everything";
+  }
+}
+
+?>
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
@@ -33,34 +57,47 @@
         </div>
     </nav>  
     <h2>
-       {User} Information
+       Edit Your Information
     </h2>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-md-5 col-lg-3">
                 <img src="./photos/temp_coffee.jpeg" class="img-fluid">
-                <h3>User Name</h3>
+                <h3><?php echo $user_info['name']; ?></h3>
             </div>
         </div>
-        <form>
-            <fieldset disabled>
+        <form action="profile.php" method="POST">
+            <fieldset disabled id="myfield">
               <div class="form-group">
                 <label for="userEmail">Email</label>
-                <input type="email" id="userEmail" class="form-control" placeholder="{EMAIL}">
+                <input type="email" id="userEmail" name="email" class="form-control" value="<?php echo $user_info['email'];?>">
               </div>
               <div class="form-group">
                 <label for="userName">Name</label>
-                <input type="text" id="userName" class="form-control" placeholder="{FULL NAME}">
+                <input type="text" id="userName" name="full_name" class="form-control" value="<?php echo $user_info['name'];?>">
               </div>
               <div class="form-group">
                 <label for="userAddress">Shipping Address</label>
-                <input type="text" id="userAddress" class="form-control" placeholder="{ADDRESS}">
+                <input type="text" id="userAddress" name="address" class="form-control" value="<?php echo $user_info['address'];?>">
               </div>
             </fieldset>
-            <span><button type="submit" class="btn btn-secondary">Edit Info</button></span>
+            <span><button type="button" id="editButton" class="btn btn-secondary">Edit Info</button></span>
+            <span><button type="button" class="btn btn-light">Delete Account</button></span>
           </form>
     </div>
-  
+
+    <script>
+      document.querySelector("#editButton").onclick = function(e) {
+        if (document.querySelector("#myfield").disabled == true) {
+          document.querySelector("#myfield").disabled = false;
+          this.innerHTML = "Submit Edits";
+        } else {
+          document.querySelector("form").submit();
+          document.querySelector("#myfield").disabled = true;
+          this.innerHTML = "Edit Info";
+        }
+      }
+    </script>
 
     <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>    

@@ -1,3 +1,42 @@
+<?php
+require "./config.php";
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ( $mysqli->connect_errno ) {
+	echo $mysqli->connect_error;
+	exit();
+} 
+$mysqli->set_charset('utf8');
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POST['password'])) {
+  if ( empty($_POST['email']) || empty($_POST['password']) ) {
+    $error = "Please enter email and password.";
+  } else {
+    $email = $_POST['email'];
+    $password = $_POST['password']; 
+
+    $sql = "SELECT * FROM users WHERE email = '" . $email . "' AND password = '" . $password . "';";
+    echo "<hr>" . $sql . "<hr>";
+    $results = $mysqli->query($sql);
+
+    if(!$results) {
+      echo $mysqli->error;
+      exit();
+    }
+
+    if($results->num_rows > 0) {
+      echo "success!";
+      $_SESSION["email"] = $email;
+      header("Location: ./home.php");
+    }
+    else {
+      $error = "Invalid email or password.";
+    }
+  }
+}
+
+$mysqli->close();
+?>
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
@@ -13,17 +52,28 @@
               <div class="col-10 col-md-7 col-lg-5 mx-auto login">
                 <h2>Welcome to Coffee!</h2>
                 <h4>To see our products and shop around, please log in or make an account.</h4>
-                <form class="mt-5">
+                <form action="" method="POST" class="mt-5">
+                    <div class="font-italize text-danger">
+                      <?php 
+                        if (isset($error) && !empty($error)) {
+                          echo $error;
+                        }
+                      ?>
+                    </div>
                     <div class="form-group row">
                         <label for="loginEmail">Email Address</label>
-                        <input type="email" class="form-control" id="loginEmail">
+                        <input type="email" name="email" class="form-control" id="loginEmail">
                     </div>
                     <div class="form-group row">
                         <label for="loginPassword">Password</label>
-                        <input type="password" class="form-control" id="loginPassword">
+                        <input type="password" name="password" class="form-control" id="loginPassword">
                     </div>
-                    <button type="submit" class="btn btn-secondary">Log in</button>
-                    <button type="submit" class="btn btn-light">I don't have an account - register</button>
+                    <div class="row">
+                      <div class="col-10 col-md-7 col-lg-5">
+                        <button type="submit" class="btn btn-secondary">Log in</button>
+                        <button type="submit" class="btn btn-light">I don't have an account - register</button>
+                      </div>
+                    </div>
                 </form>
               </div>
           </div>

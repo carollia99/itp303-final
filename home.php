@@ -8,6 +8,8 @@ if ( $mysqli->connect_errno ) {
 } 
 $mysqli->set_charset('utf8');
 
+echo "<hr>" . $_SESSION['email'] . "<hr>";
+
 $sql_products = "SELECT * FROM products";
 $results_products = $mysqli->query($sql_products);
 if ($results_products == false) {
@@ -42,7 +44,7 @@ if ($results_products == false) {
             </ul>
             <ul class="navbar-nav mr-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.html">Profile </a>
+                    <a class="nav-link" href="profile.php">Profile </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="cart.html">Cart </a>
