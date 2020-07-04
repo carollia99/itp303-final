@@ -70,8 +70,8 @@ $mysqli->close();
             Edit Your Information
         </h2>
         <div class="row justify-content-center">
-            <div class="col-10 col-md-5 col-lg-3">
-                <img src="./photos/coffee_profile.jpeg" class="img-fluid">
+            <div class="col-10 col-md-5 col-lg-3 text-center">
+                <img src="https://picsum.photos/200?grayscale" class="img-fluid rounded">
                 <h3><?php echo $user_info['name']; ?></h3>
             </div>
         </div>
