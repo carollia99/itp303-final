@@ -30,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $sql = "SELECT * FROM users WHERE email = '" . $_SESSION['email'] . "';";
-echo "<hr>" . $sql . "<hr>";
 $results = $mysqli->query($sql);
 $user_info = $results->fetch_assoc();
 
@@ -56,9 +55,6 @@ $mysqli->close();
                 <li class="nav-item">
                     <a class="nav-link" href="home.php">Home </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About </a>
-                 </li>
             </ul>
             <ul class="navbar-nav mr-0">
                 <li class="nav-item active">

@@ -53,9 +53,6 @@ $mysqli->close();
                 <li class="nav-item active">
                     <a class="nav-link" href="home.php">Home </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About </a>
-                 </li>
             </ul>
             <ul class="navbar-nav mr-0">
                 <li class="nav-item">
