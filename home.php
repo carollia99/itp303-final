@@ -7,8 +7,6 @@ if ( $mysqli->connect_errno ) {
 } 
 $mysqli->set_charset('utf8');
 
-echo "<hr>" . $_SESSION['email'] . "<hr>";
-
 $sql_products = "SELECT * FROM products";
 $results_products = $mysqli->query($sql_products);
 if ($results_products == false) {
