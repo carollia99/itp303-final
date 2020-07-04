@@ -82,10 +82,17 @@ $items_cost = 0;
                     <hr>
                     <div>Total: $<?php if ($items_cost > 0) { echo $items_cost + 5 + $taxes;} else {echo "$0.00";}?></div>
                 </div>
-                <button type="button" class="btn btn-secondary btn-block my-3">Check out!</button>
+                <button type="button" id="checkoutButton" class="btn btn-secondary btn-block my-3">Check out!</button>
+                <div id="sorry"></div>
            </div>
        </div>
     </div>
+
+    <script>
+        document.querySelector("#checkoutButton").onclick = function() {
+            document.querySelector("#sorry").innerHTML = "We apologize - Coffee! has not yet set up their online payment APIs yet. To make up for it, reach out to Carol Liang at USC and she will make you a custom drink :)"
+        }
+    </script>
   
 
     <!-- JS, Popper.js, and jQuery -->
