@@ -11,15 +11,11 @@ $mysqli->set_charset('utf8');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['email']) && isset($_POST['full_name']) && isset($_POST['address']) 
   && !empty($_POST['email']) && !empty($_POST['full_name']) && !empty($_POST['address'])) {
-    echo "we good";
-
     $sql = "UPDATE users
             SET name='" . $_POST['full_name'] . "',
             email = '" . $_POST['email'] . "',
             address = '" . $_POST['address'] . "'
             WHERE email= '" . $_SESSION['email'] . "';";
-    echo "<hr>" . $sql . "<hr>";
-
     $results = $mysqli->query($sql);
     if (!$results) {
       echo $mysqli->error;
@@ -51,7 +47,7 @@ $mysqli->close();
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="home.html">Coffee!</a>
+        <a class="navbar-brand" href="home.php">Coffee!</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -66,18 +62,18 @@ $mysqli->close();
             </ul>
             <ul class="navbar-nav mr-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="profile.html">Profile </a>
+                    <a class="nav-link" href="profile.php">Profile </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart </a>
+                    <a class="nav-link" href="cart.php">Cart </a>
                  </li>
             </ul>
         </div>
     </nav>  
-    <h2>
-       Edit Your Information
-    </h2>
-    <div class="container">
+    <div class="container my-3">
+        <h2 class="my-3">
+            Edit Your Information
+        </h2>
         <div class="row justify-content-center">
             <div class="col-10 col-md-5 col-lg-3">
                 <img src="./photos/coffee_profile.jpeg" class="img-fluid">
@@ -100,7 +96,7 @@ $mysqli->close();
               </div>
             </fieldset>
             <span><button type="button" id="editButton" class="btn btn-secondary">Edit Info</button></span>
-            <span><button type="button" class="btn btn-light">Delete Account</button></span>
+            <span><a href="welcome.php?user_id=<?php echo $_SESSION['id']; ?>" role="button" class="btn btn-light" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a></span>
             <?php if (isset($error) && !empty($error)): ?>
               <div class="text-danger"><?php echo $error; ?></div>
             <?php endif; ?>

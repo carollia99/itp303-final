@@ -18,7 +18,7 @@ if ($results_products == false) {
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['product-id'])) {
     $sql = "INSERT INTO carts(user_id, product_id, quantity)
         VALUES(" . $_SESSION['id'] . "," . $_GET['product-id'] . ", 1) ";
 
@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $success = "Item added to cart.";
     }
 }
+$mysqli->close();
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -62,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     <a class="nav-link" href="profile.php">Profile </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart </a>
+                    <a class="nav-link" href="cart.php">Cart </a>
                  </li>
             </ul>
         </div>

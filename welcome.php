@@ -16,7 +16,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POS
     $password = $_POST['password']; 
 
     $sql = "SELECT * FROM users WHERE email = '" . $email . "' AND password = '" . $password . "';";
-    echo "<hr>" . $sql . "<hr>";
     $results = $mysqli->query($sql);
 
     if(!$results) {
@@ -35,7 +34,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POS
       $error = "Invalid email or password.";
     }
   }
-}
+} else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+  $sql = "DELETE FROM users WHERE id=" . $_GET['user_id'] . ";";
+  $delete_result = $mysqli->query($sql);
+  if (!$delete_result) {
+    $error = "Something went wrong with deleting your account. Please try again";
+  } else {
+    $success = "Account deleted successfully.";
+  }
+ }
 
 $mysqli->close();
 ?>
@@ -52,6 +59,13 @@ $mysqli->close();
       <div class="container">
           <div class="row">
               <div class="col-10 col-md-7 col-lg-5 mx-auto login">
+              <div class="font-italize text-success">
+                      <?php 
+                        if (isset($success) && !empty($success)) {
+                          echo $success;
+                        }
+                      ?>
+                    </div>
                 <h2>Welcome to Coffee!</h2>
                 <h4>To see our products and shop around, please log in or make an account.</h4>
                 <form action="" method="POST" class="mt-5">

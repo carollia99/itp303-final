@@ -1,3 +1,27 @@
+<?php
+require "./config.php";
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ( $mysqli->connect_errno ) {
+	echo $mysqli->connect_error;
+	exit();
+} 
+$mysqli->set_charset('utf8');
+
+$sql = "SELECT product_id FROM carts WHERE user_id=" . $_SESSION['id'] . ";";
+$results = $mysqli->query($sql);
+if ($results == false) {
+    echo $mysqli->error;
+    exit();
+}
+
+if ($results->num_rows == 0) {
+    $empty = "Nothing in your cart yet! Keep shopping.";
+}
+
+$items_cost = 0;
+?>
+
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
@@ -37,16 +61,31 @@
        <div class="row">
            <div class="col-11 col-md-6 mb-5">
                <h3>Items</h3>
-               <img src="photos/temp_coffee.jpeg" class="img-fluid">
-               <button type="button" class="btn btn-light btn-sm">Remove Item</button>
+               <?php if (isset($empty) && !empty($empty)): ?>
+                    <div><?php echo $empty; ?></div>
+               <?php endif; ?>
+               <div class="container-fluid">
+                   <?php while ($row = $results->fetch_assoc()): 
+                        $sql = "SELECT * FROM products WHERE id=" . $row['product_id'] . ";";
+                        $product_results = $mysqli->query($sql);
+                        $product_result = $product_results->fetch_assoc();
+                        $items_cost = $items_cost + $product_result['price'];
+                    ?>
+                        <h5 class="mt-3"><?php echo $product_result['name']; ?>: $<?php echo $product_result['price']; ?></h5>
+                        <div><?php echo $product_result['description']; ?></div>
+                    <?php endwhile; ?>
+                </div>  
            </div>
            <div class="col-11 col-md-6">
                <h3>Overview</h3>
-               <div>Items Cost:</div>
-               <div>Shipping + Handling: $5.00</div>
-               <div>Taxes: </div>
-               <hr>
-               <div>Total: </div>
+                <div class="container-fluid">
+                    <div>Items Cost: $<?php echo $items_cost; ?></div>
+                    <div>Shipping + Handling: <?php if ($items_cost > 0) {echo "$5";} else {echo "$0.00";} ?></div>
+                    <div>Taxes: $<?php $taxes = 0.10*$items_cost; echo $taxes; ?></div>
+                    <hr>
+                    <div>Total: $<?php if ($items_cost > 0) { echo $items_cost + 5 + $taxes;} else {echo "$0.00";}?></div>
+                </div>
+                <button type="button" class="btn btn-secondary btn-block my-3">Check out!</button>
            </div>
        </div>
     </div>
