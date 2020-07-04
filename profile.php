@@ -71,7 +71,7 @@ $mysqli->close();
         </h2>
         <div class="row justify-content-center">
             <div class="col-10 col-md-5 col-lg-3 text-center">
-                <img src="https://picsum.photos/200?grayscale" class="img-fluid rounded">
+                <img src="https://picsum.photos/200" class="img-fluid rounded">
                 <h3><?php echo $user_info['name']; ?></h3>
             </div>
         </div>
