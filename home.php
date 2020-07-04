@@ -34,11 +34,15 @@ $mysqli->close();
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css">
     <title>Buy Coffee</title>
   </head>
   <body>
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+      </div>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="home.php">Coffee!</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -258,7 +262,12 @@ $mysqli->close();
             </div>
         </div>
     </div>
-  
+
+    <script>
+    $(window).on("load",function(){
+          $(".loader-wrapper").fadeOut(1100);
+        });
+    </script>
 
     <!-- JS, Popper.js, and jQuery -->
     <script src="home.js"></script>
