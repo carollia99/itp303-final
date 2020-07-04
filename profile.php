@@ -16,8 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['email']) && isset($_POST['full_name']) && isset($_POST['address']) 
   && !empty($_POST['email']) && !empty($_POST['full_name']) && !empty($_POST['address'])) {
     echo "we good";
+
+    $sql = "UPDATE users
+            SET name='" . $_POST['full_name'] . "',
+            email = '" . $_POST['email'] . "',
+            address = '" . $_POST['address'] . "'
+            WHERE email= '" . $_SESSION['email'] . "';";
+    echo "<hr>" . $sql . "<hr>";
+
+    $results = $mysqli->query($sql);
+    if (!$results) {
+      $error = "error with updating user info. Please try again.";
+    } else {
+      $success = "User information updated successfully.";
+    }
   } else {
-      echo "plz fill in everything";
+      $error = "Please make sure all fields are filled.";
   }
 }
 
@@ -40,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home </a>
+                    <a class="nav-link" href="home.php">Home </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">About </a>
@@ -83,6 +97,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </fieldset>
             <span><button type="button" id="editButton" class="btn btn-secondary">Edit Info</button></span>
             <span><button type="button" class="btn btn-light">Delete Account</button></span>
+            <?php if (isset($error) && !empty($error)): ?>
+              <div class="text-danger"><?php echo $error; ?></div>
+            <?php endif; ?>
+            <?php if (isset($success) && !empty($success)): ?>
+              <div class="text-success"><?php echo $success; ?></div>
+            <?php endif; ?>
           </form>
     </div>
 
