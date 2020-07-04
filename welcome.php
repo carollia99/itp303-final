@@ -24,9 +24,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POS
       exit();
     }
 
+    $row = $results->fetch_assoc();
+
     if($results->num_rows > 0) {
-      echo "success!";
       $_SESSION["email"] = $email;
+      $_SESSION["id"] = $row['id'];
       header("Location: ./home.php");
     }
     else {

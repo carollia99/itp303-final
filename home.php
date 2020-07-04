@@ -9,12 +9,27 @@ if ( $mysqli->connect_errno ) {
 $mysqli->set_charset('utf8');
 
 echo "<hr>" . $_SESSION['email'] . "<hr>";
+echo "<hr>" . $_SESSION['id'] . "<hr>";
 
 $sql_products = "SELECT * FROM products";
 $results_products = $mysqli->query($sql_products);
 if ($results_products == false) {
     echo $mysqli->error;
     exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $sql = "INSERT INTO carts(user_id, product_id, quantity)
+        VALUES(" . $_SESSION['id'] . "," . $_GET['product-id'] . ", 1) ";
+
+    $results = $mysqli->query($sql);
+
+    if(!$results) {
+      echo $mysqli->error;
+      exit();
+    } else {
+        $success = "Item added to cart.";
+    }
 }
 ?>
 <!DOCTYPE HTML>
@@ -56,13 +71,16 @@ if ($results_products == false) {
         <h2 class="my-3">
             Coffee for everyone.
         </h2>
+        <?php if (isset($success) && !empty($success)): ?>
+              <div class="text-success"><?php echo $success; ?></div>
+        <?php endif; ?>
         <div class="row">
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/dark_roast.jpeg" class="img-fluid">
                     </div>
@@ -75,11 +93,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/medium_roast.jpg" class="img-fluid">
                     </div>
@@ -92,11 +110,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/light_roast.jpeg" class="img-fluid">
                     </div>
@@ -109,11 +127,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/cold_brew_organic.jpeg" class="img-fluid">
                     </div>
@@ -126,11 +144,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/cold_brew_hazelnut.jpeg" class="img-fluid">
                     </div>
@@ -143,11 +161,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/medium_whole.jpeg" class="img-fluid">
                     </div>
@@ -160,11 +178,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/misty_espresso.jpeg" class="img-fluid">
                     </div>
@@ -177,11 +195,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/columbia-altura.jpeg" class="img-fluid">
                     </div>
@@ -194,11 +212,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/misty_espresso.jpeg" class="img-fluid">
                     </div>
@@ -211,11 +229,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/chemex.jpeg" class="img-fluid">
                     </div>
@@ -228,11 +246,11 @@ if ($results_products == false) {
                 </form>
             </div>
             <div class="col-10 col-md-5 col-lg-3 my-2 product">
-                <form action="home.php" method="POST">
+                <form action="home.php" method="GET">
                     <?php 
                         $row = $results_products->fetch_assoc();
                     ?>
-                    <input name="product-id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="product-id" value="<?php echo $row['id']; ?>">
                     <div class="row">
                         <img src="./photos/chemex-filters.jpeg" class="img-fluid">
                     </div>

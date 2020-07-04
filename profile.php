@@ -8,10 +8,6 @@ if ( $mysqli->connect_errno ) {
 } 
 $mysqli->set_charset('utf8');
 
-$sql = "SELECT * FROM users WHERE email = '" . $_SESSION['email'] . "';";
-echo "<hr>" . $sql . "<hr>";
-$results = $mysqli->query($sql);
-$user_info = $results->fetch_assoc();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['email']) && isset($_POST['full_name']) && isset($_POST['address']) 
   && !empty($_POST['email']) && !empty($_POST['full_name']) && !empty($_POST['address'])) {
@@ -26,15 +22,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $results = $mysqli->query($sql);
     if (!$results) {
+      echo $mysqli->error;
       $error = "error with updating user info. Please try again.";
     } else {
       $success = "User information updated successfully.";
+      $_SESSION["email"] = $_POST['email'];
     }
   } else {
       $error = "Please make sure all fields are filled.";
   }
 }
 
+$sql = "SELECT * FROM users WHERE email = '" . $_SESSION['email'] . "';";
+echo "<hr>" . $sql . "<hr>";
+$results = $mysqli->query($sql);
+$user_info = $results->fetch_assoc();
+
+$mysqli->close();
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -76,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-md-5 col-lg-3">
-                <img src="./photos/temp_coffee.jpeg" class="img-fluid">
+                <img src="./photos/coffee_profile.jpeg" class="img-fluid">
                 <h3><?php echo $user_info['name']; ?></h3>
             </div>
         </div>
